@@ -2,6 +2,3 @@
 
 **Portfolio Website for Data Analytics**
 
-Hello World, how are you?
-
-Another try
