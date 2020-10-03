@@ -212,10 +212,10 @@ disqusShortname = ""
 
     [[params.footer.social]]
       icon = "fa-linkedin"
-      url= "https://www.linkedin.com"
+      url= "https://www.linkedin.com/in/roman-rothenberg-5ab016198/"
       label = "LinkedIn"
 
-    [[params.footer.quicklinks]]
-      text = "Design: "
-      url= "https://www.html5up.net"
-      alt = "HTML5 UP"
+  #  [[params.footer.quicklinks]]
+    #  text = "Design: "
+    #  url= "https://www.html5up.net"
+    #  alt = "HTML5 UP"
