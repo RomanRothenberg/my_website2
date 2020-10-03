@@ -37,8 +37,8 @@ disqusShortname = ""
 
   # Navigation Section
   [params.navigation]
-    title = "Forty"
-    subtitle = "By HTML5 Up"
+    title = "Roman's Portfolio Website"
+    #subtitle = ""
     menu = "Menu"
     # Optional logo as brand stored in img/
     # logo = "logo.png"
@@ -51,13 +51,13 @@ disqusShortname = ""
       name = "Blogs"
       url = "blogs"
 
-    [[params.navigation.links]]
-      name = "Generic Blog"
-      url = "blogs/ipsum"
+  #  [[params.navigation.links]]
+  #    name = "Generic Blog"
+  #    url = "blogs/ipsum"
 
-    [[params.navigation.links]]
-      name = "Elements"
-      url = "elements.html"
+  #  [[params.navigation.links]]
+   #   name = "Elements"
+   #   url = "elements.html"
 
     # Add custom links here by uncommenting code below. To remove links just delete
     # the [[params.navigation.links]] map associated with that link. Copy and paste
@@ -81,9 +81,9 @@ disqusShortname = ""
   [params.banner]
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
-    title = "Hi, my name is Roman"
-    subtitle = "This is my portfolio website"
-    buttonText = "Get started"
+    title = "Hi, my name is Roman Rothenberg"
+    subtitle = "Here you can learn something about me and see some work I've done so far"
+    buttonText = "Come have a look"
 
 
   # Tiles Section
@@ -92,8 +92,8 @@ disqusShortname = ""
     # Display your showcases here.
     
     [[params.tiles.showcase]]
-      title = "Aliquam"
-      subtitle = "Ipsum Dolor Sit Amet"
+      title = "About Me"
+      subtitle = "A Bit of Information About Me"
       image = "pic01.jpg"
       url = "blogs/aliquam"
 
