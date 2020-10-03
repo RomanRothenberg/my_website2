@@ -8,7 +8,7 @@ draft: false
 image: pic08.jpg
 keywords: ""
 slug: gapminderanalysis
-title: Gapminder Analysis
+title: Replicating A Chart
 ---
 
 I will use the gapminder dataset to produce two graphs of how life expectancy has changed over the years for the `country` and the `continent` I come from. 
