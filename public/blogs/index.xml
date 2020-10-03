@@ -18,12 +18,14 @@ My name is Roman Rothenberg and I was born on the 16th of September 1998 in Fran
     </item>
     
     <item>
-      <title>Tempus</title>
-      <link>/blogs/tempus/</link>
+      <title>Gapminder Analysis</title>
+      <link>/blogs/gapminderanalysis/</link>
       <pubDate>Tue, 31 Oct 2017 22:26:13 -0500</pubDate>
       
-      <guid>/blogs/tempus/</guid>
-      <description></description>
+      <guid>/blogs/gapminderanalysis/</guid>
+      <description>I will use the gapminder dataset to produce two graphs of how life expectancy has changed over the years for the country and the continent I come from.
+First, I create two datasets regarding the continent and country of origin.
+country_data &amp;lt;- gapminder %&amp;gt;% filter(country == &amp;quot;Germany&amp;quot;) continent_data &amp;lt;- gapminder %&amp;gt;% filter(continent == &amp;quot;Europe&amp;quot;) Then I create a plot of life expectancy over time for Germany. I use geom_point() to see the actual data points and geom_smooth(se = FALSE) to plot the underlying trendlines.</description>
     </item>
     
     <item>
