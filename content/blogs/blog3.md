@@ -26,18 +26,17 @@ continent_data <- gapminder %>%
 Then I create a plot of life expectancy over time for Germany. I use  `geom_point()` to see the actual data points and `geom_smooth(se = FALSE)`  to plot the underlying trendlines. 
 
 ```{r, lifeExp_one_country}
-plot1 <- ggplot(country_data, aes(x = year, y = lifeExp))+
+ggplot(country_data, aes(x = year, y = lifeExp))+
 geom_point() +
 geom_smooth(se = FALSE)+
 NULL 
 
-plot1
 ```
 
 Next I add a title using the labs function.
 
 ```{r, lifeExp_one_country_with_label}
-plot1 <- ggplot(country_data, aes(x = year, y = lifeExp))+
+ggplot(country_data, aes(x = year, y = lifeExp))+
 geom_point() +
 geom_smooth(se = FALSE) +
 labs(title = "Life Expectancy in Germany from 1952-2007",
@@ -45,13 +44,12 @@ x = "Year",
 y = "Life Expectancy in years") +
 NULL
 
-print(plot1)
 ```
 
 After that I produce a plot for all countries in the *continent* I come from. 
 
 ```{r lifeExp_one_continent}
-plot2 <- ggplot(continent_data, aes(x = year, y = lifeExp, colour = country))+
+ggplot(continent_data, aes(x = year, y = lifeExp, colour = country))+
 geom_point() + 
 geom_smooth(se = FALSE) +
 labs(title = "Life Expectancy in Europe from 1952-2007",
@@ -59,13 +57,12 @@ x = "Year",
 y = "Life Expectancy in years") +
 NULL
 
-plot2
 ```
 
 Finally, using the original `gapminder` data, I produce a life expectancy over time graph, grouped (or faceted) by continent. I remove all legends, adding the `theme(legend.position="none")` in the end of the ggplot.
 
 ```{r, lifeExp_facet_by_continent}
-plot3 <- ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, colour = continent))+
+ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, colour = continent))+
 geom_point() + 
 geom_smooth(se = FALSE) + 
 labs(title = "Life Expectancy by continent from 1952-2007",
@@ -75,7 +72,6 @@ facet_wrap(~continent) +
 theme(legend.position="none") + 
 NULL
 
-plot3
 ```
 
 We can see that life expectancy has increased in each continent since 1952. Nevertheless, there were and still are significant differences in life expectancy levels across continents. In 1952, people living in Oceania had the highest life expectancy and people living in Africa had the lowest. In 2007, this was unchanged. Africa still has the lowest life expectancy levels of all continents and Oceania the highest. There are probably multiple reasons for why the life expectancy levels were different, have been evolved differently and are still different, but it can be assumed that three main reasons are economic development, social and political unrest and general infrastructure, all of which are of course intertwined with one another.
@@ -85,7 +81,7 @@ We can see that life expectancy has increased in each continent since 1952. Neve
 Nutrition, standards of living and education have a large impact on life expectancy levels in a given country and continent. It is difficult to assess all of these factors quantitatively, but it is not unreasonable to assume that they are in some way positively correlated to the income of each citizen and the wealth of a country as a whole. The income of people determines the quality and quantity of their nutrition, the standards of living and the education families are able to provide to their children. The wealth of the nation determines the upper and lower boundaries within which people can increase or lower their standards of living. If there are no private schools for example, money is useless when it comes to the provision of an improved education for a child. The above graph shows that America, Asia, Europe and Oceania, even though starting at higher levels of life expectancy than Africa have managed to increase their advantage further. Although Africa has also managed to increase its life expectancy levels (though this improvement has almost been halted for the last 20 years) the continent did not manage to catch up with the rest of the world. One reason for this could be the differences in economic development levels from 1952-2007. Africa has by far experienced the lowest levels of economic development when measured on a per capita basis in this time period as can be seen in the graph below. 
 
 ```{r GdpPercap_facet_by_continent}
-plot4 <- ggplot(data = gapminder, mapping = aes(x = year, y = gdpPercap, colour = continent))+
+ggplot(data = gapminder, mapping = aes(x = year, y = gdpPercap, colour = continent))+
 geom_point() + 
 geom_smooth(se = FALSE) + 
 labs(title = "GDP Per Capita Development of each country by continent from 1952-2007",
@@ -95,7 +91,6 @@ facet_wrap(~continent) +
 theme(legend.position="none") + 
 NULL
 
-plot4
 ```
 
 In addition, life expectancy levels have remained flat in Africa starting around 1990 until 2007. One reason for this could have been the social and political instability in the continent.

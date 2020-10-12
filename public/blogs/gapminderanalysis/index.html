@@ -86,14 +86,13 @@
 continent_data &lt;- gapminder %&gt;% 
             filter(continent == &quot;Europe&quot;)
 </code></pre><p>Then I create a plot of life expectancy over time for Germany. I use  <code>geom_point()</code> to see the actual data points and <code>geom_smooth(se = FALSE)</code>  to plot the underlying trendlines.</p>
-<pre><code class="language-{r," data-lang="{r,">plot1 &lt;- ggplot(country_data, aes(x = year, y = lifeExp))+
+<pre><code class="language-{r," data-lang="{r,">ggplot(country_data, aes(x = year, y = lifeExp))+
 geom_point() +
 geom_smooth(se = FALSE)+
 NULL 
 
-plot1
 </code></pre><p>Next I add a title using the labs function.</p>
-<pre><code class="language-{r," data-lang="{r,">plot1 &lt;- ggplot(country_data, aes(x = year, y = lifeExp))+
+<pre><code class="language-{r," data-lang="{r,">ggplot(country_data, aes(x = year, y = lifeExp))+
 geom_point() +
 geom_smooth(se = FALSE) +
 labs(title = &quot;Life Expectancy in Germany from 1952-2007&quot;,
@@ -101,9 +100,8 @@ x = &quot;Year&quot;,
 y = &quot;Life Expectancy in years&quot;) +
 NULL
 
-print(plot1)
 </code></pre><p>After that I produce a plot for all countries in the <em>continent</em> I come from.</p>
-<pre><code class="language-{r" data-lang="{r">plot2 &lt;- ggplot(continent_data, aes(x = year, y = lifeExp, colour = country))+
+<pre><code class="language-{r" data-lang="{r">ggplot(continent_data, aes(x = year, y = lifeExp, colour = country))+
 geom_point() + 
 geom_smooth(se = FALSE) +
 labs(title = &quot;Life Expectancy in Europe from 1952-2007&quot;,
@@ -111,9 +109,8 @@ x = &quot;Year&quot;,
 y = &quot;Life Expectancy in years&quot;) +
 NULL
 
-plot2
 </code></pre><p>Finally, using the original <code>gapminder</code> data, I produce a life expectancy over time graph, grouped (or faceted) by continent. I remove all legends, adding the <code>theme(legend.position=&quot;none&quot;)</code> in the end of the ggplot.</p>
-<pre><code class="language-{r," data-lang="{r,">plot3 &lt;- ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, colour = continent))+
+<pre><code class="language-{r," data-lang="{r,">ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, colour = continent))+
 geom_point() + 
 geom_smooth(se = FALSE) + 
 labs(title = &quot;Life Expectancy by continent from 1952-2007&quot;,
@@ -123,11 +120,10 @@ facet_wrap(~continent) +
 theme(legend.position=&quot;none&quot;) + 
 NULL
 
-plot3
 </code></pre><p>We can see that life expectancy has increased in each continent since 1952. Nevertheless, there were and still are significant differences in life expectancy levels across continents. In 1952, people living in Oceania had the highest life expectancy and people living in Africa had the lowest. In 2007, this was unchanged. Africa still has the lowest life expectancy levels of all continents and Oceania the highest. There are probably multiple reasons for why the life expectancy levels were different, have been evolved differently and are still different, but it can be assumed that three main reasons are economic development, social and political unrest and general infrastructure, all of which are of course intertwined with one another.</p>
 <p><strong>Economic Development</strong></p>
 <p>Nutrition, standards of living and education have a large impact on life expectancy levels in a given country and continent. It is difficult to assess all of these factors quantitatively, but it is not unreasonable to assume that they are in some way positively correlated to the income of each citizen and the wealth of a country as a whole. The income of people determines the quality and quantity of their nutrition, the standards of living and the education families are able to provide to their children. The wealth of the nation determines the upper and lower boundaries within which people can increase or lower their standards of living. If there are no private schools for example, money is useless when it comes to the provision of an improved education for a child. The above graph shows that America, Asia, Europe and Oceania, even though starting at higher levels of life expectancy than Africa have managed to increase their advantage further. Although Africa has also managed to increase its life expectancy levels (though this improvement has almost been halted for the last 20 years) the continent did not manage to catch up with the rest of the world. One reason for this could be the differences in economic development levels from 1952-2007. Africa has by far experienced the lowest levels of economic development when measured on a per capita basis in this time period as can be seen in the graph below.</p>
-<pre><code class="language-{r" data-lang="{r">plot4 &lt;- ggplot(data = gapminder, mapping = aes(x = year, y = gdpPercap, colour = continent))+
+<pre><code class="language-{r" data-lang="{r">ggplot(data = gapminder, mapping = aes(x = year, y = gdpPercap, colour = continent))+
 geom_point() + 
 geom_smooth(se = FALSE) + 
 labs(title = &quot;GDP Per Capita Development of each country by continent from 1952-2007&quot;,
@@ -137,7 +133,6 @@ facet_wrap(~continent) +
 theme(legend.position=&quot;none&quot;) + 
 NULL
 
-plot4
 </code></pre><p>In addition, life expectancy levels have remained flat in Africa starting around 1990 until 2007. One reason for this could have been the social and political instability in the continent.</p>
 <p><strong>Social and Political Instability</strong></p>
 <p>Social and Political unrest can cause a country to enter into warfare, move capital into segments that are less beneficial for the standards of living for citizens, cause psychological and physical pain as well as putting a country or a nation into a coma where there is no development, both economically and with respect to the life expectancy of people. Although there has been political and social upheavals in America, Asia, Oceania and Europe, they seem to not have affected the longer trend of an increasing life expectancy in each continent. However, there is one point in time (in the 1990&rsquo;s), where the increase in life expectancy in Africa suddenly stops. One event, which coincided with this halt is the end of Apartheid in South and Southwest Africa. At first it was a period of high uncertainty, social imbalance and economic standstill. For the 20 years to follow, countries such as South Africa and Zimbabwe saw a very strong decrease in economic development, which could explain partly why the life expectancy levels stopped increasing. But there is one other possible factor worth mentioning, namely the Infrastructure a country has.</p>
