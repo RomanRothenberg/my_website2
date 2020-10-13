@@ -28,16 +28,6 @@ The General Social Survey (GSS) gathers data on American society in order to mon
     </item>
     
     <item>
-      <title>Brexit Votum</title>
-      <link>/blogs/blog5/</link>
-      <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
-      
-      <guid>/blogs/blog5/</guid>
-      <description>I will have a quick look at the results of the 2016 Brexit vote in the UK. First I read the data using read_csv() and have a quick glimpse at the data
-brexit_results &amp;lt;- read_csv(here::here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;,&amp;quot;brexit_results.csv&amp;quot;)) glimpse(brexit_results) ## Rows: 632 ## Columns: 11 ## $ Seat &amp;lt;chr&amp;gt; &amp;quot;Aldershot&amp;quot;, &amp;quot;Aldridge-Brownhills&amp;quot;, &amp;quot;Altrincham and Sale … ## $ con_2015 &amp;lt;dbl&amp;gt; 50.592, 52.050, 52.994, 43.979, 60.788, 22.418, 52.454, 2… ## $ lab_2015 &amp;lt;dbl&amp;gt; 18.</description>
-    </item>
-    
-    <item>
       <title>Does America Approve with Trump?</title>
       <link>/blogs/blog7/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
@@ -49,14 +39,26 @@ To do this, I donwloaded approval polls data and manipulate the data as to allow
     </item>
     
     <item>
-      <title>Gapminder Analysis</title>
-      <link>/blogs/blog6/</link>
+      <title>How long will I live?</title>
+      <link>/blogs/gapminder/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
       
-      <guid>/blogs/blog6/</guid>
+      <guid>/blogs/gapminder/</guid>
       <description>I will use the gapminder dataset to produce two graphs of how life expectancy has changed over the years for the country and the continent I come from (Germany)
 First, I create two datasets regarding the continent and country of origin.
 country_data &amp;lt;- gapminder %&amp;gt;% filter(country == &amp;quot;Germany&amp;quot;) continent_data &amp;lt;- gapminder %&amp;gt;% filter(continent == &amp;quot;Europe&amp;quot;) Then I create a plot of life expectancy over time for Germany. I use geom_point() to see the actual data points and geom_smooth(se = FALSE) to plot the underlying trendlines.</description>
+    </item>
+    
+    <item>
+      <title>Why did the UK want to leave?</title>
+      <link>/blogs/brexit/</link>
+      <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
+      
+      <guid>/blogs/brexit/</guid>
+      <description>I will try to analyze some aspects of the outcome for the Brexit Votum.
+In order to conduct my analysis, I will have to download my data first and will proceed with my analysis below.
+brexit_results &amp;lt;- read_csv(here::here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;,&amp;quot;brexit_results.csv&amp;quot;)) The data comes from Elliott Morris, who cleaned it and made it available through his DataCamp class on analysing election and polling data in R.
+The main outcome variable (or y) is leave_share, which is the percent of votes cast in favour of Brexit, or leaving the EU.</description>
     </item>
     
     <item>

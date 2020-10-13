@@ -87,7 +87,8 @@ continent_data &lt;- gapminder %&gt;%
 <p>Then I create a plot of life expectancy over time for Germany. I use <code>geom_point()</code> to see the actual data points and <code>geom_smooth(se = FALSE)</code> to plot the underlying trendlines.</p>
 <pre class="r"><code>plot1 &lt;- ggplot(country_data, aes(x = year, y = lifeExp))+
 geom_point() +
-geom_smooth(se = FALSE)+
+geom_smooth(se = FALSE) +
+theme_bw()+
 NULL 
 
 plot1</code></pre>
@@ -100,6 +101,7 @@ geom_smooth(se = FALSE) +
 labs(title = &quot;Life Expectancy in Germany from 1952-2007&quot;,
 x = &quot;Year&quot;,
 y = &quot;Life Expectancy in years&quot;) +
+theme_bw()+
 NULL
 
 print(plot1)</code></pre>
@@ -112,6 +114,7 @@ geom_smooth(se = FALSE) +
 labs(title = &quot;Life Expectancy in Europe from 1952-2007&quot;,
 x = &quot;Year&quot;,
 y = &quot;Life Expectancy in years&quot;) +
+theme_bw()+
 NULL
 
 plot2</code></pre>
@@ -126,6 +129,7 @@ x = &quot;Year&quot;,
 y = &quot;Life Expectancy in years&quot;) +
 facet_wrap(~continent) +
 theme(legend.position=&quot;none&quot;) + 
+theme_bw()+
 NULL
 
 plot3</code></pre>
@@ -145,6 +149,7 @@ x = &quot;Year&quot;,
 y = &quot;GDP Per Capita&quot;) +
 facet_wrap(~continent) +
 theme(legend.position=&quot;none&quot;) + 
+theme_bw()+  
 NULL
 
 plot4</code></pre>

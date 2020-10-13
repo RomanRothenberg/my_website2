@@ -7,8 +7,8 @@ description: "Playing Around with the Gapminder Data Set"
 draft: false
 image: pic02.jpg
 keywords: ""
-slug: blog6
-title: Gapminder Analysis
+slug: gapminder
+title: How long will I live?
 ---
 
 ```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
@@ -34,7 +34,8 @@ Then I create a plot of life expectancy over time for Germany. I use  `geom_poin
 ```{r, lifeExp_one_country}
 plot1 <- ggplot(country_data, aes(x = year, y = lifeExp))+
 geom_point() +
-geom_smooth(se = FALSE)+
+geom_smooth(se = FALSE) +
+theme_bw()+
 NULL 
 
 plot1
@@ -49,6 +50,7 @@ geom_smooth(se = FALSE) +
 labs(title = "Life Expectancy in Germany from 1952-2007",
 x = "Year",
 y = "Life Expectancy in years") +
+theme_bw()+
 NULL
 
 print(plot1)
@@ -63,6 +65,7 @@ geom_smooth(se = FALSE) +
 labs(title = "Life Expectancy in Europe from 1952-2007",
 x = "Year",
 y = "Life Expectancy in years") +
+theme_bw()+
 NULL
 
 plot2
@@ -79,6 +82,7 @@ x = "Year",
 y = "Life Expectancy in years") +
 facet_wrap(~continent) +
 theme(legend.position="none") + 
+theme_bw()+
 NULL
 
 plot3
@@ -101,6 +105,7 @@ x = "Year",
 y = "GDP Per Capita") +
 facet_wrap(~continent) +
 theme(legend.position="none") + 
+theme_bw()+  
 NULL
 
 plot4

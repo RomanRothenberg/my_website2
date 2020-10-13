@@ -3,12 +3,12 @@ categories:
 - ""
 - ""
 date: "2017-10-31T21:28:43-05:00"
-description: "Analyzing Parts of the Brexit Votum"
+description: "Analyzing the outcome of the Brexit Votum"
 draft: false
 image: pic03.jpg
 keywords: ""
-slug: blog5
-title: Brexit Votum
+slug: brexit
+title: Why did the UK want to leave?
 ---
 
 ```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
@@ -17,12 +17,13 @@ library(gapminder)  # gapminder dataset
 library(here)
 ```
 
-I will have a quick look at the results of the 2016 Brexit vote in the UK. First I read the data using `read_csv()` and have a quick glimpse at the data
+I will try to analyze some aspects of the outcome for the Brexit Votum. 
+
+In order to conduct my analysis, I will have to download my data first and will proceed with my analysis below.
 
 ```{r load_brexit_data, warning=FALSE, message=FALSE}
 brexit_results <- read_csv(here::here("static", "data","brexit_results.csv"))
 
-glimpse(brexit_results)
 ```
 
 The data comes from [Elliott Morris](https://www.thecrosstab.com/), who cleaned it and made it available through his [DataCamp class on analysing election and polling data in R](https://www.datacamp.com/courses/analyzing-election-and-polling-data-in-r).
@@ -38,20 +39,22 @@ labs(title = "Brexit Histogram",
      subtitle = "Number of Consituencies with respective share of votes cast in favour of Brexit", 
      y = "Number of Constituencies", 
      x = "Share of votes in favour of leaving the EU (%)") +
-geom_histogram(binwidth = 2.5)
+geom_histogram(binwidth = 2.5) +
+theme_bw()
 
 brexit_density <- ggplot(brexit_results, aes(x = leave_share)) +
 labs(title = "Brexit Density Plot", 
      subtitle = "Distribution of share of votes cast in favour of Brexit within Constituencies across the UK", 
      y = "Density", 
      x = "Share of votes in favour of leaving the EU (%)") +
-  geom_density()
+  geom_density() +
+  theme_bw()
 
 brexit_histogram
 brexit_density
 ```
 
-One common explanation for the Brexit outcome was fear of immigration and opposition to the EU's more open border policy. We can check the relationship (or correlation) between the proportion of native born residents (`born_in_uk`) in a constituency and its `leave_share`. To do this, let us get the correlation between the two variables
+One common explanation for the Brexit outcome was fear of immigration and opposition to the EU's more open border policy. I can check the relationship (or correlation) between the proportion of native born residents (`born_in_uk`) in a constituency and its `leave_share`. 
 
 ```{r brexit_immigration_correlation}
 brexit_results %>% 
@@ -59,9 +62,9 @@ brexit_results %>%
   cor()
 ```
 
-The correlation is almost 0.5, which shows that the two variables are positively correlated. 
+The correlation is almost 0.5, which shows that the two variables are positively correlated.
 
-We can also create a scatterplot between these two variables using `geom_point`. We also add the best fit line, using  `geom_smooth(method = "lm")`. 
+We can also create a scatterplot between these two variables using `geom_point`. We add the best fit line, using  `geom_smooth(method = "lm")`. 
 
 ```{r brexit_immigration_plot}
 ggplot(brexit_results, aes(x = born_in_uk, y = leave_share)) +

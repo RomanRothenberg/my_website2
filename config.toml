@@ -98,16 +98,16 @@ disqusShortname = ""
       url = "blogs/AboutMe"
 
     [[params.tiles.showcase]]
-      title = "Gapminder Analysis"
+      title = "How long will I live?"
       subtitle = "Playing Around with the Gapminder Data Set"
       image = "pic02.jpg"
-      url = "blogs/blog6"
+      url = "blogs/gapminder"
 
     [[params.tiles.showcase]]
-      title = "Brexit Votum Analysis"
-      subtitle = "Analyzing Parts of the Brexit Votum"
+      title = "Why did the UK want to leave?"
+      subtitle = "Analyzing the outcome of the Brexit Votum"
       image = "pic03.jpg"
-      url = "blogs/blog5"
+      url = "blogs/brexit"
 
     [[params.tiles.showcase]]
       title = "Does America approve with Trump?"
