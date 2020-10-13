@@ -38,6 +38,15 @@ country_data &amp;lt;- gapminder %&amp;gt;% filter(country == &amp;quot;Germany&
     </item>
     
     <item>
+      <title>Brexit Votum</title>
+      <link>/blogs/ipsum/</link>
+      <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
+      
+      <guid>/blogs/ipsum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ipsum</title>
       <link>/blogs/ipsum/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
