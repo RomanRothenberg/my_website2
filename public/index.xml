@@ -18,26 +18,6 @@ My name is Roman Rothenberg and I was born on the 16th of September 1998 in Fran
     </item>
     
     <item>
-      <title>Replicating A Chart</title>
-      <link>/blogs/gapminderanalysis/</link>
-      <pubDate>Tue, 31 Oct 2017 22:26:13 -0500</pubDate>
-      
-      <guid>/blogs/gapminderanalysis/</guid>
-      <description>I will use the gapminder dataset to produce two graphs of how life expectancy has changed over the years for the country and the continent I come from.
-First, I create two datasets regarding the continent and country of origin.
-country_data &amp;lt;- gapminder %&amp;gt;% filter(country == &amp;quot;Germany&amp;quot;) continent_data &amp;lt;- gapminder %&amp;gt;% filter(continent == &amp;quot;Europe&amp;quot;) Then I create a plot of life expectancy over time for Germany. I use geom_point() to see the actual data points and geom_smooth(se = FALSE) to plot the underlying trendlines.</description>
-    </item>
-    
-    <item>
-      <title>Magna</title>
-      <link>/blogs/magna/</link>
-      <pubDate>Tue, 31 Oct 2017 22:26:09 -0500</pubDate>
-      
-      <guid>/blogs/magna/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Analyzing aspects of the North American Society</title>
       <link>/blogs/blog8/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
@@ -77,15 +57,6 @@ To do this, I donwloaded approval polls data and manipulate the data as to allow
       <description>I will use the gapminder dataset to produce two graphs of how life expectancy has changed over the years for the country and the continent I come from (Germany)
 First, I create two datasets regarding the continent and country of origin.
 country_data &amp;lt;- gapminder %&amp;gt;% filter(country == &amp;quot;Germany&amp;quot;) continent_data &amp;lt;- gapminder %&amp;gt;% filter(continent == &amp;quot;Europe&amp;quot;) Then I create a plot of life expectancy over time for Germany. I use geom_point() to see the actual data points and geom_smooth(se = FALSE) to plot the underlying trendlines.</description>
-    </item>
-    
-    <item>
-      <title>Ipsum</title>
-      <link>/blogs/ipsum/</link>
-      <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
-      
-      <guid>/blogs/ipsum/</guid>
-      <description>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</description>
     </item>
     
     <item>
