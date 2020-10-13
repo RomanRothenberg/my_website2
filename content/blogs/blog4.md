@@ -5,7 +5,7 @@ categories:
 date: "2017-10-31T22:42:51-05:00"
 description: A bit of Information About Me
 draft: false
-image: pic07.jpg
+image: pic01.jpg
 keywords: ""
 slug: AboutMe
 title: About Me
