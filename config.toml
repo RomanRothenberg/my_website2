@@ -110,16 +110,16 @@ disqusShortname = ""
       url = "blogs/blog5"
 
     [[params.tiles.showcase]]
-      title = "Ipsum"
-      subtitle = "Nisl Sed Aliquam"
+      title = "Does America approve with Trump?"
+      subtitle = "Trump's Average Approval Margins"
       image = "pic04.jpg"
-      url = "blogs/ipsum"
+      url = "blogs/blog7"
 
     [[params.tiles.showcase]]
-      title = "Consequat"
-      subtitle = "Ipsum Dolor Sit Amet"
+      title = "How Social is North America?"
+      subtitle = "Analyzing aspects of the US Society using the General Social Survey"
       image = "pic05.jpg"
-      url = "blogs/ipsum"
+      url = "blogs/blog8"
 
     [[params.tiles.showcase]]
       title = "Etiam"
