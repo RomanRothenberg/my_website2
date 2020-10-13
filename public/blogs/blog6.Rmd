@@ -17,16 +17,7 @@ library(gapminder)  # gapminder dataset
 library(here)
 ```
 
-You have seen the `gapminder` dataset that has data on life expectancy, population, and GDP per capita for 142 countries from 1952 to 2007. To get a glipmse of the dataframe, namely to see the variable names, variable types, etc., we use the `glimpse` function. We also want to have a look at the first 20 rows of data.
-
-```{r}
-glimpse(gapminder)
-
-head(gapminder, 20) # look at the first 20 rows of the dataframe
-
-```
-
-I will use the gapminder dataset to produce two graphs of how life expectancy has changed over the years for the `country` and the `continent` I come from. 
+I will use the gapminder dataset to produce two graphs of how life expectancy has changed over the years for the `country` and the `continent` I come from (Germany)
 
 First, I create two datasets regarding the continent and country of origin.
 

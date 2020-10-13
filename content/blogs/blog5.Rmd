@@ -17,30 +17,34 @@ library(gapminder)  # gapminder dataset
 library(here)
 ```
 
-We will have a quick look at the results of the 2016 Brexit vote in the UK. First we read the data using `read_csv()` and have a quick glimpse at the data
+I will have a quick look at the results of the 2016 Brexit vote in the UK. First I read the data using `read_csv()` and have a quick glimpse at the data
 
 ```{r load_brexit_data, warning=FALSE, message=FALSE}
 brexit_results <- read_csv(here::here("static", "data","brexit_results.csv"))
 
-
 glimpse(brexit_results)
 ```
 
-
 The data comes from [Elliott Morris](https://www.thecrosstab.com/), who cleaned it and made it available through his [DataCamp class on analysing election and polling data in R](https://www.datacamp.com/courses/analyzing-election-and-polling-data-in-r).
 
-Our main outcome variable (or y) is `leave_share`, which is the percent of votes cast in favour of Brexit, or leaving the EU. Each row is a UK [parliament constituency](https://en.wikipedia.org/wiki/United_Kingdom_Parliament_constituencies). 
+The main outcome variable (or y) is `leave_share`, which is the percent of votes cast in favour of Brexit, or leaving the EU. Each row is a UK [parliament constituency](https://en.wikipedia.org/wiki/United_Kingdom_Parliament_constituencies). 
 
-To get a sense of the spread of the data, plot a histogram and a density plot of the leave share in all constituencies.
+To get a sense of the spread of the data, I plot a histogram and a density plot of the leave share in all constituencies.
 
 ```{r brexit_histogram, warning=FALSE, message=FALSE}
 
 brexit_histogram <- ggplot(brexit_results, aes(x = leave_share)) + 
-labs(title = "Brexit Histogram", subtitle = "Number of Consituencies with respective share of votes cast in favour of Brexit", y = "Number of Constituencies", x = "Share of votes in favour of leaving the EU (%)") +
+labs(title = "Brexit Histogram", 
+     subtitle = "Number of Consituencies with respective share of votes cast in favour of Brexit", 
+     y = "Number of Constituencies", 
+     x = "Share of votes in favour of leaving the EU (%)") +
 geom_histogram(binwidth = 2.5)
 
 brexit_density <- ggplot(brexit_results, aes(x = leave_share)) +
-labs(title = "Brexit Density Plot", subtitle = "Distribution of share of votes cast in favour of Brexit within Constituencies across the UK", y = "Density", x = "Share of votes in favour of leaving the EU (%)") +
+labs(title = "Brexit Density Plot", 
+     subtitle = "Distribution of share of votes cast in favour of Brexit within Constituencies across the UK", 
+     y = "Density", 
+     x = "Share of votes in favour of leaving the EU (%)") +
   geom_density()
 
 brexit_histogram
@@ -61,16 +65,15 @@ We can also create a scatterplot between these two variables using `geom_point`.
 
 ```{r brexit_immigration_plot}
 ggplot(brexit_results, aes(x = born_in_uk, y = leave_share)) +
-labs(title = "Brexit - Fear of Immigration", subtitle = "The relationship between the proportion of native born residents in a \nConstituency and its respective share of votes in favour of Brexit", y = "Share of votes in favour of Brexit (%)", x = "Proportion of native born residents in a Constituency (%)") +
+labs(title = "Brexit - Fear of Immigration", 
+     subtitle = "The relationship between the proportion of native born residents in a \nConstituency and its respective share of votes in favour of Brexit", 
+     y = "Share of votes in favour of Brexit (%)", 
+     x = "Proportion of native born residents in a Constituency (%)") +
   geom_point(alpha=0.3) +
   geom_smooth(method = "lm") +
   theme_bw() +
   NULL
 ```
-
-You have the code for the plots, I would like you to revisit all of them and use the `labs()` function to add an informative title, subtitle, and axes titles to all plots.
-
-What can you say about the relationship shown above? Again, don't just say what's happening in the graph. Tell some sort of story and speculate about the differences in the patterns.
 
 > Type your answer after, and outside, this blockquote.
 

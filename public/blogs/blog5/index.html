@@ -77,9 +77,8 @@
                             
 
 
-<p>We will have a quick look at the results of the 2016 Brexit vote in the UK. First we read the data using <code>read_csv()</code> and have a quick glimpse at the data</p>
+<p>I will have a quick look at the results of the 2016 Brexit vote in the UK. First I read the data using <code>read_csv()</code> and have a quick glimpse at the data</p>
 <pre class="r"><code>brexit_results &lt;- read_csv(here::here(&quot;static&quot;, &quot;data&quot;,&quot;brexit_results.csv&quot;))
-
 
 glimpse(brexit_results)</code></pre>
 <pre><code>## Rows: 632
@@ -96,14 +95,20 @@ glimpse(brexit_results)</code></pre>
 ## $ degree      &lt;dbl&gt; 13.870661, 9.974114, 28.600135, 9.336294, 18.775591, 6.08…
 ## $ age_18to24  &lt;dbl&gt; 9.406093, 7.325850, 6.437453, 7.747801, 5.734730, 8.20986…</code></pre>
 <p>The data comes from <a href="https://www.thecrosstab.com/">Elliott Morris</a>, who cleaned it and made it available through his <a href="https://www.datacamp.com/courses/analyzing-election-and-polling-data-in-r">DataCamp class on analysing election and polling data in R</a>.</p>
-<p>Our main outcome variable (or y) is <code>leave_share</code>, which is the percent of votes cast in favour of Brexit, or leaving the EU. Each row is a UK <a href="https://en.wikipedia.org/wiki/United_Kingdom_Parliament_constituencies">parliament constituency</a>.</p>
-<p>To get a sense of the spread of the data, plot a histogram and a density plot of the leave share in all constituencies.</p>
+<p>The main outcome variable (or y) is <code>leave_share</code>, which is the percent of votes cast in favour of Brexit, or leaving the EU. Each row is a UK <a href="https://en.wikipedia.org/wiki/United_Kingdom_Parliament_constituencies">parliament constituency</a>.</p>
+<p>To get a sense of the spread of the data, I plot a histogram and a density plot of the leave share in all constituencies.</p>
 <pre class="r"><code>brexit_histogram &lt;- ggplot(brexit_results, aes(x = leave_share)) + 
-labs(title = &quot;Brexit Histogram&quot;, subtitle = &quot;Number of Consituencies with respective share of votes cast in favour of Brexit&quot;, y = &quot;Number of Constituencies&quot;, x = &quot;Share of votes in favour of leaving the EU (%)&quot;) +
+labs(title = &quot;Brexit Histogram&quot;, 
+     subtitle = &quot;Number of Consituencies with respective share of votes cast in favour of Brexit&quot;, 
+     y = &quot;Number of Constituencies&quot;, 
+     x = &quot;Share of votes in favour of leaving the EU (%)&quot;) +
 geom_histogram(binwidth = 2.5)
 
 brexit_density &lt;- ggplot(brexit_results, aes(x = leave_share)) +
-labs(title = &quot;Brexit Density Plot&quot;, subtitle = &quot;Distribution of share of votes cast in favour of Brexit within Constituencies across the UK&quot;, y = &quot;Density&quot;, x = &quot;Share of votes in favour of leaving the EU (%)&quot;) +
+labs(title = &quot;Brexit Density Plot&quot;, 
+     subtitle = &quot;Distribution of share of votes cast in favour of Brexit within Constituencies across the UK&quot;, 
+     y = &quot;Density&quot;, 
+     x = &quot;Share of votes in favour of leaving the EU (%)&quot;) +
   geom_density()
 
 brexit_histogram</code></pre>
@@ -120,15 +125,16 @@ brexit_histogram</code></pre>
 <p>The correlation is almost 0.5, which shows that the two variables are positively correlated.</p>
 <p>We can also create a scatterplot between these two variables using <code>geom_point</code>. We also add the best fit line, using <code>geom_smooth(method = "lm")</code>.</p>
 <pre class="r"><code>ggplot(brexit_results, aes(x = born_in_uk, y = leave_share)) +
-labs(title = &quot;Brexit - Fear of Immigration&quot;, subtitle = &quot;The relationship between the proportion of native born residents in a \nConstituency and its respective share of votes in favour of Brexit&quot;, y = &quot;Share of votes in favour of Brexit (%)&quot;, x = &quot;Proportion of native born residents in a Constituency (%)&quot;) +
+labs(title = &quot;Brexit - Fear of Immigration&quot;, 
+     subtitle = &quot;The relationship between the proportion of native born residents in a \nConstituency and its respective share of votes in favour of Brexit&quot;, 
+     y = &quot;Share of votes in favour of Brexit (%)&quot;, 
+     x = &quot;Proportion of native born residents in a Constituency (%)&quot;) +
   geom_point(alpha=0.3) +
   geom_smooth(method = &quot;lm&quot;) +
   theme_bw() +
   NULL</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/blogs/blog5_files/figure-html/brexit_immigration_plot-1.png" width="672" /></p>
-<p>You have the code for the plots, I would like you to revisit all of them and use the <code>labs()</code> function to add an informative title, subtitle, and axes titles to all plots.</p>
-<p>What can you say about the relationship shown above? Again, don’t just say what’s happening in the graph. Tell some sort of story and speculate about the differences in the patterns.</p>
 <blockquote>
 <p>Type your answer after, and outside, this blockquote.</p>
 </blockquote>
