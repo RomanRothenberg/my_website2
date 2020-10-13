@@ -8,7 +8,7 @@
 	<meta name="description" content="Your description">
 	<meta name="author" content="Roman Rothenberg">
 	<meta name="generator" content="Hugo 0.75.1" />
-	<title>blog5 &middot; Roman</title>
+	<title>Brexit Votum &middot; Roman</title>
 	<!-- Stylesheets -->
 	
 	<link rel="stylesheet" href="/css/main.css"/>
@@ -61,8 +61,6 @@
                 <li><a href="/blogs" class="button special fit">Get Started</a></li>
             
             
-                <li><a href="/" class="button fit">Log In</a></li>
-            
         </ul>
     </nav>
 
@@ -73,31 +71,72 @@
                     <section id="one">
                         <div class="inner">
                             <header class="major">
-                                <h1>blog5</h1>
+                                <h1>Brexit Votum</h1>
                             </header>
                             
+                                <span class="image main"><img src="/img/blogs/pic03.jpg" alt="" /></span>
+                            
                             
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
-</div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="/blogs/blog5_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
-</div>
+<p>We will have a quick look at the results of the 2016 Brexit vote in the UK. First we read the data using <code>read_csv()</code> and have a quick glimpse at the data</p>
+<pre class="r"><code>brexit_results &lt;- read_csv(here::here(&quot;static&quot;, &quot;data&quot;,&quot;brexit_results.csv&quot;))
+
+
+glimpse(brexit_results)</code></pre>
+<pre><code>## Rows: 632
+## Columns: 11
+## $ Seat        &lt;chr&gt; &quot;Aldershot&quot;, &quot;Aldridge-Brownhills&quot;, &quot;Altrincham and Sale …
+## $ con_2015    &lt;dbl&gt; 50.592, 52.050, 52.994, 43.979, 60.788, 22.418, 52.454, 2…
+## $ lab_2015    &lt;dbl&gt; 18.333, 22.369, 26.686, 34.781, 11.197, 41.022, 18.441, 4…
+## $ ld_2015     &lt;dbl&gt; 8.824, 3.367, 8.383, 2.975, 7.192, 14.828, 5.984, 2.423, …
+## $ ukip_2015   &lt;dbl&gt; 17.867, 19.624, 8.011, 15.887, 14.438, 21.409, 18.821, 21…
+## $ leave_share &lt;dbl&gt; 57.89777, 67.79635, 38.58780, 65.29912, 49.70111, 70.4728…
+## $ born_in_uk  &lt;dbl&gt; 83.10464, 96.12207, 90.48566, 97.30437, 93.33793, 96.9621…
+## $ male        &lt;dbl&gt; 49.89896, 48.92951, 48.90621, 49.21657, 48.00189, 49.1718…
+## $ unemployed  &lt;dbl&gt; 3.637000, 4.553607, 3.039963, 4.261173, 2.468100, 4.74273…
+## $ degree      &lt;dbl&gt; 13.870661, 9.974114, 28.600135, 9.336294, 18.775591, 6.08…
+## $ age_18to24  &lt;dbl&gt; 9.406093, 7.325850, 6.437453, 7.747801, 5.734730, 8.20986…</code></pre>
+<p>The data comes from <a href="https://www.thecrosstab.com/">Elliott Morris</a>, who cleaned it and made it available through his <a href="https://www.datacamp.com/courses/analyzing-election-and-polling-data-in-r">DataCamp class on analysing election and polling data in R</a>.</p>
+<p>Our main outcome variable (or y) is <code>leave_share</code>, which is the percent of votes cast in favour of Brexit, or leaving the EU. Each row is a UK <a href="https://en.wikipedia.org/wiki/United_Kingdom_Parliament_constituencies">parliament constituency</a>.</p>
+<p>To get a sense of the spread of the data, plot a histogram and a density plot of the leave share in all constituencies.</p>
+<pre class="r"><code>brexit_histogram &lt;- ggplot(brexit_results, aes(x = leave_share)) + 
+labs(title = &quot;Brexit Histogram&quot;, subtitle = &quot;Number of Consituencies with respective share of votes cast in favour of Brexit&quot;, y = &quot;Number of Constituencies&quot;, x = &quot;Share of votes in favour of leaving the EU (%)&quot;) +
+geom_histogram(binwidth = 2.5)
+
+brexit_density &lt;- ggplot(brexit_results, aes(x = leave_share)) +
+labs(title = &quot;Brexit Density Plot&quot;, subtitle = &quot;Distribution of share of votes cast in favour of Brexit within Constituencies across the UK&quot;, y = &quot;Density&quot;, x = &quot;Share of votes in favour of leaving the EU (%)&quot;) +
+  geom_density()
+
+brexit_histogram</code></pre>
+<p><img src="/blogs/blog5_files/figure-html/brexit_histogram-1.png" width="672" /></p>
+<pre class="r"><code>brexit_density</code></pre>
+<p><img src="/blogs/blog5_files/figure-html/brexit_histogram-2.png" width="672" /></p>
+<p>One common explanation for the Brexit outcome was fear of immigration and opposition to the EU’s more open border policy. We can check the relationship (or correlation) between the proportion of native born residents (<code>born_in_uk</code>) in a constituency and its <code>leave_share</code>. To do this, let us get the correlation between the two variables</p>
+<pre class="r"><code>brexit_results %&gt;% 
+  select(leave_share, born_in_uk) %&gt;% 
+  cor()</code></pre>
+<pre><code>##             leave_share born_in_uk
+## leave_share   1.0000000  0.4934295
+## born_in_uk    0.4934295  1.0000000</code></pre>
+<p>The correlation is almost 0.5, which shows that the two variables are positively correlated.</p>
+<p>We can also create a scatterplot between these two variables using <code>geom_point</code>. We also add the best fit line, using <code>geom_smooth(method = "lm")</code>.</p>
+<pre class="r"><code>ggplot(brexit_results, aes(x = born_in_uk, y = leave_share)) +
+labs(title = &quot;Brexit - Fear of Immigration&quot;, subtitle = &quot;The relationship between the proportion of native born residents in a \nConstituency and its respective share of votes in favour of Brexit&quot;, y = &quot;Share of votes in favour of Brexit (%)&quot;, x = &quot;Proportion of native born residents in a Constituency (%)&quot;) +
+  geom_point(alpha=0.3) +
+  geom_smooth(method = &quot;lm&quot;) +
+  theme_bw() +
+  NULL</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/blogs/blog5_files/figure-html/brexit_immigration_plot-1.png" width="672" /></p>
+<p>You have the code for the plots, I would like you to revisit all of them and use the <code>labs()</code> function to add an informative title, subtitle, and axes titles to all plots.</p>
+<p>What can you say about the relationship shown above? Again, don’t just say what’s happening in the graph. Tell some sort of story and speculate about the differences in the patterns.</p>
+<blockquote>
+<p>Type your answer after, and outside, this blockquote.</p>
+</blockquote>
+<p>The graph shows a positive correlation between the proportion of native born residents in a constituency and the respective share of votes in favour of Brexit. However, whether this was because of a fear of immigration and the fear of losing a cultural identity, or because native born people in the UK dislike being in the EU with continental Europeans, or whether they dislike certain policies proposed by the EU is unknown. The correlation does not indicate a causation and there could be many reasons for why the share of votes in favour of Brexit is positively correlated with the proportion of native bron residents in a constituency.</p>
+<p>Nevertheless, the story behind the numbers could be that fear was caused due to the political parties warning citizens of immigration. However, to what extent this might have influenced the population is unknown judging from the data alone. Also, there was a tendency for older people to vote in favour of Brexit. Given the wide dispersion around the trendline in the graph above, it could be that even within a given proportion of native born citizens in a constituency there were significant differences as to the share of votes in favour of Brexit. For example, constituencies with 100% of native born residents had voting results from ca. 40% to ca.60% in favour of Brexit. That alone would have allowed for two different outcomes regarding the Brexit vote.</p>
+<p>Overall, the correlation is positive, but the cause is unknown. Fear of immigration might have played a part, but it could also have been the negative sentiment towards the EU in general, the longing for a time where the UK is independent again or the absence of young voters in favour of a unified europe even though this does carry costs to everyone.</p>
 
                         </div>
                     </section>

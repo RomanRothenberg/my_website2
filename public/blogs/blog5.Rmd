@@ -5,14 +5,78 @@ categories:
 date: "2017-10-31T21:28:43-05:00"
 description: ""
 draft: false
-image: pic10.jpg
+image: pic03.jpg
 keywords: ""
-slug: ipsum
+slug: blog5
 title: Brexit Votum
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(gapminder)  # gapminder dataset
+library(here)
 ```
 
+We will have a quick look at the results of the 2016 Brexit vote in the UK. First we read the data using `read_csv()` and have a quick glimpse at the data
+
+```{r load_brexit_data, warning=FALSE, message=FALSE}
+brexit_results <- read_csv(here::here("static", "data","brexit_results.csv"))
+
+
+glimpse(brexit_results)
+```
+
+
+The data comes from [Elliott Morris](https://www.thecrosstab.com/), who cleaned it and made it available through his [DataCamp class on analysing election and polling data in R](https://www.datacamp.com/courses/analyzing-election-and-polling-data-in-r).
+
+Our main outcome variable (or y) is `leave_share`, which is the percent of votes cast in favour of Brexit, or leaving the EU. Each row is a UK [parliament constituency](https://en.wikipedia.org/wiki/United_Kingdom_Parliament_constituencies). 
+
+To get a sense of the spread of the data, plot a histogram and a density plot of the leave share in all constituencies.
+
+```{r brexit_histogram, warning=FALSE, message=FALSE}
+
+brexit_histogram <- ggplot(brexit_results, aes(x = leave_share)) + 
+labs(title = "Brexit Histogram", subtitle = "Number of Consituencies with respective share of votes cast in favour of Brexit", y = "Number of Constituencies", x = "Share of votes in favour of leaving the EU (%)") +
+geom_histogram(binwidth = 2.5)
+
+brexit_density <- ggplot(brexit_results, aes(x = leave_share)) +
+labs(title = "Brexit Density Plot", subtitle = "Distribution of share of votes cast in favour of Brexit within Constituencies across the UK", y = "Density", x = "Share of votes in favour of leaving the EU (%)") +
+  geom_density()
+
+brexit_histogram
+brexit_density
+```
+
+One common explanation for the Brexit outcome was fear of immigration and opposition to the EU's more open border policy. We can check the relationship (or correlation) between the proportion of native born residents (`born_in_uk`) in a constituency and its `leave_share`. To do this, let us get the correlation between the two variables
+
+```{r brexit_immigration_correlation}
+brexit_results %>% 
+  select(leave_share, born_in_uk) %>% 
+  cor()
+```
+
+The correlation is almost 0.5, which shows that the two variables are positively correlated. 
+
+We can also create a scatterplot between these two variables using `geom_point`. We also add the best fit line, using  `geom_smooth(method = "lm")`. 
+
+```{r brexit_immigration_plot}
+ggplot(brexit_results, aes(x = born_in_uk, y = leave_share)) +
+labs(title = "Brexit - Fear of Immigration", subtitle = "The relationship between the proportion of native born residents in a \nConstituency and its respective share of votes in favour of Brexit", y = "Share of votes in favour of Brexit (%)", x = "Proportion of native born residents in a Constituency (%)") +
+  geom_point(alpha=0.3) +
+  geom_smooth(method = "lm") +
+  theme_bw() +
+  NULL
+```
+
+You have the code for the plots, I would like you to revisit all of them and use the `labs()` function to add an informative title, subtitle, and axes titles to all plots.
+
+What can you say about the relationship shown above? Again, don't just say what's happening in the graph. Tell some sort of story and speculate about the differences in the patterns.
+
+> Type your answer after, and outside, this blockquote.
+
+The graph shows a positive correlation between the proportion of native born residents in a constituency and the respective share of votes in favour of Brexit. However, whether this was because of a fear of immigration and the fear of losing a cultural identity, or because native born people in the UK dislike being in the EU with continental Europeans, or whether they dislike certain policies proposed by the EU is unknown. The correlation does not indicate a causation and there could be many reasons for why the share of votes in favour of Brexit is positively correlated with the proportion of native bron residents in a constituency. 
+
+Nevertheless, the story behind the numbers could be that fear was caused due to the political parties warning citizens of immigration. However, to what extent this might have influenced the population is unknown judging from the data alone. Also, there was a tendency for older people to vote in favour of Brexit. Given the wide dispersion around the trendline in the graph above, it could be that even within a given proportion of native born citizens in a constituency there were significant differences as to the share of votes in favour of Brexit. For example, constituencies with 100% of native born residents had voting results from ca. 40% to ca.60% in favour of Brexit. That alone would have allowed for two different outcomes regarding the Brexit vote. 
+
+Overall, the correlation is positive, but the cause is unknown. Fear of immigration might have played a part, but it could also have been the negative sentiment towards the EU in general, the longing for a time where the UK is independent again or the absence of young voters in favour of a unified europe even though this does carry costs to everyone. 
 

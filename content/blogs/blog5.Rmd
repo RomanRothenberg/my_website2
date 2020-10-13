@@ -20,7 +20,7 @@ library(here)
 We will have a quick look at the results of the 2016 Brexit vote in the UK. First we read the data using `read_csv()` and have a quick glimpse at the data
 
 ```{r load_brexit_data, warning=FALSE, message=FALSE}
-brexit_results <- read_csv(here::here("Data","brexit_results.csv"))
+brexit_results <- read_csv(here::here("static", "data","brexit_results.csv"))
 
 
 glimpse(brexit_results)
@@ -34,6 +34,7 @@ Our main outcome variable (or y) is `leave_share`, which is the percent of votes
 To get a sense of the spread of the data, plot a histogram and a density plot of the leave share in all constituencies.
 
 ```{r brexit_histogram, warning=FALSE, message=FALSE}
+
 brexit_histogram <- ggplot(brexit_results, aes(x = leave_share)) + 
 labs(title = "Brexit Histogram", subtitle = "Number of Consituencies with respective share of votes cast in favour of Brexit", y = "Number of Constituencies", x = "Share of votes in favour of leaving the EU (%)") +
 geom_histogram(binwidth = 2.5)
