@@ -18,24 +18,24 @@ My name is Roman Rothenberg and I was born on the 16th of September 1998 in Fran
     </item>
     
     <item>
-      <title>Analyzing aspects of the North American Society</title>
-      <link>/blogs/blog8/</link>
+      <title>Analyzing social media usage within the United States</title>
+      <link>/blogs/socialmedia/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
       
-      <guid>/blogs/blog8/</guid>
-      <description>I will analyze data from the 2016 GSS sample data, to estimate values of population parameters of interest about US adults. The GSS sample data file has 2867 observations of 935 variables, but we are only interested in very few of these variables and you are using a smaller file.
+      <guid>/blogs/socialmedia/</guid>
+      <description>I will analyze data from the 2016 GSS sample data, to estimate values of population parameters of interest about US adults. The GSS sample data file has 2867 observations of 935 variables, but I am only interested in very few of these variables and will thus only use a smaller file.
 The General Social Survey (GSS) gathers data on American society in order to monitor and explain trends in attitudes, behaviours, and attributes.</description>
     </item>
     
     <item>
-      <title>Does America Approve with Trump?</title>
-      <link>/blogs/blog7/</link>
+      <title>Does America Approve of Trump?</title>
+      <link>/blogs/trump/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
       
-      <guid>/blogs/blog7/</guid>
-      <description>I wanted to find out how many americans approve with their own president.
-To do this, I donwloaded approval polls data and manipulate the data as to allow for a thorough analysis and ultimately a plot that enables me to analyed the approval margins of Donald Trump over time.
-# Import approval polls data approval_polllist &amp;lt;- read_csv(here::here(&amp;#39;static&amp;#39;, &amp;#39;data&amp;#39;, &amp;#39;approval_polllist.csv&amp;#39;)) ## Parsed with column specification: ## cols( ## .default = col_character(), ## samplesize = col_double(), ## weight = col_double(), ## influence = col_double(), ## approve = col_double(), ## disapprove = col_double(), ## adjusted_approve = col_double(), ## adjusted_disapprove = col_double(), ## tracking = col_logical(), ## poll_id = col_double(), ## question_id = col_double() ## ) ## See spec(.</description>
+      <guid>/blogs/trump/</guid>
+      <description>I wanted to find out how many North Americans approve with what their own president does.
+To do this, I downloaded approval polls data and manipulated the data as to allow for a thorough analysis, ultimately plotting a graph that enables me to analyze the approval margins of Donald Trump over time.
+# Import approval polls data approval_polllist &amp;lt;- read_csv(here::here(&amp;#39;static&amp;#39;, &amp;#39;data&amp;#39;, &amp;#39;approval_polllist.csv&amp;#39;)) ## Parsed with column specification: ## cols( ## .</description>
     </item>
     
     <item>

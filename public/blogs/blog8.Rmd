@@ -7,8 +7,8 @@ description: "Analyzing aspects of the US Society using the General Social Surve
 draft: false
 image: pic05.jpg
 keywords: ""
-slug: blog8
-title: Analyzing aspects of the North American Society
+slug: socialmedia
+title: Analyzing social media usage within the United States
 ---
 
 ```{r load-libraries, include=FALSE}
@@ -25,7 +25,7 @@ library(vroom)
 library(infer)
 ```
 
-I will analyze data from the **2016 GSS sample data**, to estimate values of *population parameters* of interest about US adults. The GSS sample data file has 2867 observations of 935 variables, but we are only interested in very few of these variables and you are using a smaller file.
+I will analyze data from the **2016 GSS sample data**, to estimate values of *population parameters* of interest about US adults. The GSS sample data file has 2867 observations of 935 variables, but I am only interested in very few of these variables and will thus only use a smaller file.
 
 The [General Social Survey (GSS)](http://www.gss.norc.org/) gathers data on American society in order to monitor and explain trends in attitudes, behaviours, and attributes. Many trends have been tracked for decades, so one can see the evolution of attitudes, etc in American Society.
 
@@ -36,9 +36,9 @@ gss <- read_csv(here::here("static", "data", "smallgss2016.csv"),
                        "No answer", "Not applicable"))
 ```
 
-We notice that many responses should not be taken into consideration, like "No Answer", "Don't Know", "Not applicable", "Refused to Answer".
+Sidenote: I noticed that many responses should not be taken into consideration, such as "No Answer", "Don't Know", "Not applicable", "Refused to Answer" and have thus not considered these in my analysis. 
 
-We will be creating 95% confidence intervals for population parameters. The variables we have are the following:
+I will be creating 95% confidence intervals for population parameters. The variables I have are the following:
 
 - hours and minutes spent on email weekly. The responses to these questions are recorded in the `emailhr` and `emailmin` variables. For example, if the response is 2.50 hours, this would be recorded as emailhr = 2 and emailmin = 30.
 - `snapchat`, `instagrm`, `twitter`: whether respondents used these social media in 2016
@@ -47,11 +47,11 @@ We will be creating 95% confidence intervals for population parameters. The vari
 
 ## Instagram and Snapchat, by sex
 
-We want to estimate the *population* proportion of Snapchat or Instagram users in 2016.
+At first, I want to find out the *population* proportion of Snapchat or Instagram users in 2016.
 
-We can do this, but in order to respond to this question, we have to solve for certain variables and perform calculations, as presented below. 
+To do this, I have to solve for certain variables and perform calculations, as presented below. 
 
-We create a  new variable, `snap_insta` that is *Yes* if the respondent reported using any of Snapchat (`snapchat`) or Instagram (`instagrm`), and *No* if not. If the recorded value was NA for both of these questions, the value in your new variable should also be NA.
+I create a  new variable, `snap_insta` that is *Yes* if the respondent reported using any of Snapchat (`snapchat`) or Instagram (`instagrm`), and *No* if not. 
 
 ```{r, nap_insta, cache=TRUE}
 
@@ -63,7 +63,7 @@ mutate(snap_insta = case_when(snapchat == "Yes" ~ "Yes",
   
 ```
 
-Then we calculated the proportion of Yes’s for `snap_insta` among those who answered the question, i.e. excluding NAs.
+Then I calculated the proportion of Yes’s for `snap_insta` among those who answered the question, i.e. excluding NAs.
 
 ```{r, nap_insta2, cache=TRUE}
 
@@ -79,7 +79,7 @@ proportion_users
   
 ```
 
-Using the CI formula for proportions, we constructed 95% CIs for men and women who used either Snapchat or Instagram
+Using the CI formula for proportions, I construct 95% CIs for men and women who used either Snapchat or Instagram
 
 ```{r, nap_insta3, cache=TRUE}
 
@@ -109,92 +109,13 @@ proportions_gender_ci
   
 ```
 
-
-## Twitter, by education level
-
-Next we want to estimate the *population* proportion of Twitter users by education level in 2016?. 
-
-There are 5 education levels in variable `degree` which, in ascneding order of years of education, are Lt high school, High School, Junior college, Bachelor, Graduate. 
-
-At first we turn `degree` from a character variable into a factor variable. We made sure that the order is the correct one and that levels are not sorted alphabetically which is what R by default does. 
-
-```{r, nap_twitter, cache=TRUE}
-
-factor_degree<- gss %>% 
-  na.omit(degree) %>% 
-  mutate(degree = factor(degree, 
-                         levels = c("Lt high school", 
-                                    "High School", 
-                                    "Junior college", 
-                                    "Bachelor", 
-                                    "Graduate"))) %>% 
-  arrange((degree))
-
-factor_degree
-
-```
-
-Next, we create a  new variable, `bachelor_graduate` that is *Yes* if the respondent has either a `Bachelor` or `Graduate` degree. As before, if the recorded value for either was NA, the value in your new variable should also be NA.
-
-```{r, nap_twitter2, cache=TRUE}
-
-bachelor_graduate <-factor_degree%>%
-  mutate(bachelor_graduate = case_when(
-    degree == "Bachelor" ~ "Yes",
-    degree == "Graduate" ~ "Yes",
-    degree != "Graduate"& degree != "Bachelor" ~ "No",
-    TRUE ~ "NA"
-  ))
-
-view(bachelor_graduate)
-```
-
-We calculate the proportion of `bachelor_graduate` who do (Yes) and who don't (No) use twitter. 
-
-```{r, nap_twitter3, cache=TRUE}
-
-proportion_twitter_bachelor_graduate <- bachelor_graduate %>% 
-  filter(bachelor_graduate =="Yes") %>% 
-  count(twitter)%>% 
-  pivot_wider(names_from=twitter , values_from=n) %>% 
-  mutate(twitter_yes= Yes/(No+Yes), twitter_no= No/(Yes+No))
-
-proportion_twitter_bachelor_graduate
-  
-```
-
-Using the CI formula for proportions, we constructed two 95% CIs for `bachelor_graduate` vs whether they use (Yes) and don't (No) use twitter.
-
-```{r, nap_twitter4, cache=TRUE}
-
-confidential_interval_twitter_yes <- proportion_twitter_bachelor_graduate %>% 
-  mutate(SE=sqrt((twitter_yes*(1-twitter_yes)/(Yes+No)))) %>% 
-  summarise(lower_95=twitter_yes-1.96*SE, 
-            upper_95=twitter_yes+1.96*SE) %>% 
-  summarise(CI_Yes_Twitter=c(lower_95,upper_95))
-
-confidential_interval_twitter_yes
-
-confidential_interval_twitter_no <- proportion_twitter_bachelor_graduate %>% 
-  mutate(SE=sqrt((twitter_no*(1-twitter_no)/(Yes+No)))) %>% 
-  summarise(lower_95=twitter_no-1.96*SE, 
-            upper_95=twitter_no+1.96*SE) %>% 
-  summarise(CI_No_Twitter=c(lower_95,upper_95))
-
-confidential_interval_twitter_no
-
-```
-
-Do these two Confidence Intervals overlap?
-
-No, the two Conidence Intervals do not overlap. That means that the difference between Bachelor graduates who use (YES) and do not use (NO) is not statistically significant.
-
+It is interesting to see that women are heavier users of Instagram and Snapchat than men. Even when considering a 95% confidence interval, do the two gender groups not intersect, so we can clearly say that we expect to see that in the overall population women use Instagram and Snapchat more than men. 
 
 ## Email usage
 
-At last, we estimate the *population* parameter on time spent on email weekly.
+Also, I want to estimate the *population* parameter on time spent on emails weekly.
 
-First we create a new variable called `email` that combines `emailhr` and `emailmin` to reports the number of minutes the respondents spend on email weekly.
+To do this, I first create a new variable called `email` that combines `emailhr` and `emailmin` to reports the number of minutes the respondents spend on emails weekly.
 
 ```{r, nap_email1, cache=TRUE}
 
@@ -203,11 +124,9 @@ email <- gss %>%
   mutate(email=(emailhr*60)+emailmin) %>% 
   arrange(desc(email))
 
-email
-
 ```
 
-We want to visualize the distribution of this new variable. We also find the mean and the median number of minutes respondents spend on email weekly. 
+I want to visualize the distribution of this new variable, so I also find the mean and the median number of minutes respondents spend on emails weekly. 
 
 ```{r, nap_email2, cache=TRUE}
 
@@ -228,11 +147,9 @@ ggplot(email, aes(y=email)) +
 
 ```
 
-3. Is the mean or the median a better measure of the typical amoung of time Americans spend on email weekly? Why?
+Using the `infer` package, I calculated a 95% bootstrap confidence interval for the mean amount of time Americans spend on email weekly. 
 
-Whenever a graph falls on a normal distribution, using the mean is a good choice. But if your data has extreme scores (such as the difference between a someone spends 6000 minutes and someone who spends 100 minutes at email a week), you will need to look at median, because we find a much more representative number for our data.
-
-Using the `infer` package, we calculated a 95% bootstrap confidence interval for the mean amount of time Americans spend on email weekly. We interpreted this interval in context of the data, reporting its endpoints in “humanized” units (e.g. instead of 108 minutes, report 1 hr and 8 minutes).
+I interpreted this interval in the context of the data, reporting its endpoints in “humanized” units (e.g. instead of 108 minutes, report 1 hr and 8 minutes).
 
 ```{r, nap_email3, cache=TRUE}
 
@@ -247,8 +164,4 @@ bootstrap_email_ci
 
 ```
 
-The confidence interval for the mean email usage in the population is between 6hrs 24min and 7hrs 28min. This seems like a reasonable interval given that the sample mean is 6hrs and 57min.
-
-4. Would you expect a 99% confidence interval to be wider or narrower than the interval you calculated above? Explain your reasoning.
-
-If we were to increase the confidence level of the interval to 99%, then the range of the interval would increase. Increasing the confidence will increase the margin of error resulting in a wider interval. In general, the greater the confidence level, the greater the range between the high and low points in a confidence interval.
+It is shocking to see how much time we spend on emails and communicating with each other. The confidence interval for the mean email usage in the population is between 6hrs 24min and 7hrs 28min. I wonder how this has changed over the past and whether there might be some psychological trends that could be explained with the ever increasing fixation humanity has to social media. 

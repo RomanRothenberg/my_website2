@@ -110,16 +110,16 @@ disqusShortname = ""
       url = "blogs/brexit"
 
     [[params.tiles.showcase]]
-      title = "Does America approve with Trump?"
-      subtitle = "Trump's Average Approval Margins"
+      title = "Does America approve of Trump?"
+      subtitle = "Trump's Average Approval Margins over time"
       image = "pic04.jpg"
-      url = "blogs/blog7"
+      url = "blogs/trump"
 
     [[params.tiles.showcase]]
       title = "How Social is North America?"
-      subtitle = "Analyzing aspects of the US Society using the General Social Survey"
+      subtitle = "Analyzing social media usage within the United States"
       image = "pic05.jpg"
-      url = "blogs/blog8"
+      url = "blogs/socialmedia"
 
   #  [[params.tiles.showcase]]
    #   title = "Etiam"

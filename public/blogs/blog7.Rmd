@@ -3,12 +3,12 @@ categories:
 - ""
 - ""
 date: "2017-10-31T21:28:43-05:00"
-description: "Trump's Average Approval Margins"
+description: "Trump's Average Approval Margins over time"
 draft: false
 image: pic04.jpg
 keywords: ""
-slug: blog7
-title: Does America Approve with Trump?
+slug: trump
+title: Does America Approve of Trump?
 ---
 
 ```{r load-libraries, include=FALSE}
@@ -25,16 +25,13 @@ library(vroom)
 library(infer)
 ```
 
-I wanted to find out how many americans approve with their own president. 
+I wanted to find out how many North Americans approve with what their own president does. 
 
-To do this, I donwloaded approval polls data and manipulate the data as to allow for a thorough analysis and ultimately a plot that enables me to analyed the approval margins of Donald Trump over time. 
+To do this, I downloaded approval polls data and manipulated the data as to allow for a thorough analysis, ultimately plotting a graph that enables me to analyze the approval margins of Donald Trump over time. 
 
 ```{r, cache=TRUE}
 # Import approval polls data
 approval_polllist <- read_csv(here::here('static', 'data', 'approval_polllist.csv'))
-
-glimpse(approval_polllist)
-
 
 approval_polllist2 <- approval_polllist %>%
 filter(subgroup == "Voters") %>% 
@@ -48,7 +45,6 @@ mutate(
   net_approval = approve - disapprove
   )
 
-glimpse(approval_polllist2)
 ```
 
 ## Create a plot
@@ -69,7 +65,6 @@ net_approval_ci <- approval_polllist2 %>%
     netapproval_low = mean_netapproval - margin_of_error,
     netapproval_high = mean_netapproval + margin_of_error
   )
-  
     
 ```
 
@@ -100,17 +95,6 @@ net_approval
     
 ```
 
-## A little Note on Comparing Confidence Intervals
+## Will Trump ever resemble what the US Population really wants?
 
-When I compare the confidence intervals for `week 15` (6-12 April 2020) and `week 34` (17-23 August 2020), I see the following:
-
-```{r, cache=TRUE}
-
-ci_comparison <- net_approval_ci %>% 
-  filter(enddate_year == 2020, enddate_week == c(15, 34)) %>% 
-  mutate(confidence_interval = netapproval_high - netapproval_low)
-
-ci_comparison
-```
-
-The confidence interval for week 15 is significantly lower than the confidence interval for week 34. However, this is not due to a change in sample size, but rather because the standard deviation of net approval rates in week 34 is significantly higher than the standard deviation of net approval rates in week 15. One could assume that the week from the 17th to the 23rd was very eventful especially with regards to Corona and hence, there was a more significant divide amongst democrats and republicans or in other words, Trump approvals and non approvals. This probably led to a higher standard deviation and thus the margin of error in our calculation is significantly higher for week 34 than for week 15. 
+It seems by looking at the data, that Donald Trump has basically never done what his country would have liked him to do. It is suprising to see that his approval margins since the day he came into office, have been below 0, even when accounting for a substantial margin of error. Nevertheless, with the recent outbreak of covid19 it seems that the country is beginning to approve with Donald Trump. It will be interesting to see, whether these margins will increase in the near future and whether the outcome of the next presidential election will reflect the general sentiment towards Donald Trump displayed through the polls. 
