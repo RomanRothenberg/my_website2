@@ -369,9 +369,10 @@ yield_curve_inversion &lt;-  ggplot(yield_curve_spread) +
 
 #And change the breaks and labels of the x axis
                           scale_x_date(date_breaks = &quot;2 years&quot;, date_labels = &quot;%Y&quot;) +
+                          theme(axis.text.x = element_text(size=rel(0.6))) +
 
 #At last, I draw a black line through the yintercept = 0
-                          geom_hline(yintercept=0, color = &quot;black&quot;)
+                          geom_hline(yintercept=0, color = &quot;black&quot;) 
 
 yield_curve_inversion</code></pre>
 <p><img src="/blogs/blog9_files/figure-html/unnamed-chunk-1-1.png" width="100%" /></p>
