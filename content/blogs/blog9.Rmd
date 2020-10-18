@@ -251,7 +251,7 @@ According to [Wikipedia's list of recession in the United States](https://en.wik
 
 Besides calculating the spread (10year - 3months), there are a few things I need to do to produce our final plot
 
-```{r}
+```{r, out.width="100%"}
 #First I calculate the monthly average spread
 #To do this I first need to add a column with the daily spread / Pivot wider by date so that symbol x and y are columns and prices are below / difference can be calculated
 
