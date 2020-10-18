@@ -3,12 +3,12 @@ categories:
 - ""
 - ""
 date: "2017-10-31T21:28:43-05:00"
-description: "Analyzing aspects of the US Society using the General Social Survey"
+description: "Analyzing social media usage within the United States"
 draft: false
 image: pic05.jpg
 keywords: ""
 slug: socialmedia
-title: Analyzing social media usage within the United States
+title: How social is North America?
 ---
 
 ```{r load-libraries, include=FALSE}

@@ -18,16 +18,6 @@ My name is Roman Rothenberg and I was born on the 16th of September 1998 in Fran
     </item>
     
     <item>
-      <title>Analyzing social media usage within the United States</title>
-      <link>/blogs/socialmedia/</link>
-      <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
-      
-      <guid>/blogs/socialmedia/</guid>
-      <description>I will analyze data from the 2016 GSS sample data, to estimate values of population parameters of interest about US adults. The GSS sample data file has 2867 observations of 935 variables, but I am only interested in very few of these variables and will thus only use a smaller file.
-The General Social Survey (GSS) gathers data on American society in order to monitor and explain trends in attitudes, behaviours, and attributes.</description>
-    </item>
-    
-    <item>
       <title>Does America Approve of Trump?</title>
       <link>/blogs/trump/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
@@ -39,6 +29,16 @@ To do this, I downloaded approval polls data and manipulated the data as to allo
     </item>
     
     <item>
+      <title>Does the yield curve predict a recession?</title>
+      <link>/blogs/usyield/</link>
+      <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
+      
+      <guid>/blogs/usyield/</guid>
+      <description>Every so often, we hear warnings from commentators on the “inverted yield curve” and its predictive power with respect to recessions. As a little exercise I will try to look at US data and use the FRED database to download historical yield curve rates, and plot the yield curves since 1999 to see when the yield curves flatten.
+First, I will use the tidyquant package to download monthly rates for different durations.</description>
+    </item>
+    
+    <item>
       <title>How long will I live?</title>
       <link>/blogs/gapminder/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
@@ -47,6 +47,16 @@ To do this, I downloaded approval polls data and manipulated the data as to allo
       <description>I will use the gapminder dataset to produce two graphs of how life expectancy has changed over the years for the country and the continent I come from (Germany)
 First, I create two datasets regarding the continent and country of origin.
 country_data &amp;lt;- gapminder %&amp;gt;% filter(country == &amp;quot;Germany&amp;quot;) continent_data &amp;lt;- gapminder %&amp;gt;% filter(continent == &amp;quot;Europe&amp;quot;) Then I create a plot of life expectancy over time for Germany. I use geom_point() to see the actual data points and geom_smooth(se = FALSE) to plot the underlying trendlines.</description>
+    </item>
+    
+    <item>
+      <title>How social is North America?</title>
+      <link>/blogs/socialmedia/</link>
+      <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
+      
+      <guid>/blogs/socialmedia/</guid>
+      <description>I will analyze data from the 2016 GSS sample data, to estimate values of population parameters of interest about US adults. The GSS sample data file has 2867 observations of 935 variables, but I am only interested in very few of these variables and will thus only use a smaller file.
+The General Social Survey (GSS) gathers data on American society in order to monitor and explain trends in attitudes, behaviours, and attributes.</description>
     </item>
     
     <item>
