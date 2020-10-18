@@ -88,8 +88,6 @@ NULL
 plot3
 ```
 
-> Type your answer after this blockquote.
-
 We can see that life expectancy has increased in each continent since 1952. Nevertheless, there were and still are significant differences in life expectancy levels across continents. In 1952, people living in Oceania had the highest life expectancy and people living in Africa had the lowest. In 2007, this was unchanged. Africa still has the lowest life expectancy levels of all continents and Oceania the highest. There are probably multiple reasons for why the life expectancy levels were different, have been evolved differently and are still different, but it can be assumed that three main reasons are economic development, social and political unrest and general infrastructure, all of which are of course intertwined with one another.
 
 **Economic Development**
