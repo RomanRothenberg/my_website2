@@ -348,3 +348,5 @@ yield_curve_inversion <-  ggplot(yield_curve_spread) +
 yield_curve_inversion
 
 ```
+
+One can see from the graph above that the yield curve inversion mostly signals a recession, however there have been some occasions where the inversion did not lead to a recession immediately (ca. 1967) and others where there has been a recession without a prior inversion of the yield curve (1991). It follows that the inversion of the yield curve can be used as a factor in one's analysis, but not as the sole factor. Just like every doctor will check your pulse, but not immediately draw conclusions when he finds it to be a bit too high or too low.
